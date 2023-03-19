@@ -1,6 +1,7 @@
+import AbstractComponent from "../shared/abstract-component";
 import html from "html-template-tag";
 
-export default class Register {
+export default class Register extends AbstractComponent {
   render() {
     const fields: string[] = ["Full Name", "Age"];
 
