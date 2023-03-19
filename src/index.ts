@@ -1,4 +1,5 @@
 import "bulma/css/bulma.css";
+import "./index.css";
 import Navigo from "navigo";
 import Home from "./pages/home";
 import Login from "./pages/login";
