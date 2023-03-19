@@ -4,6 +4,7 @@ import Navigo from "navigo";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Feed from "./pages/feed";
 
 const application: HTMLDivElement = document.querySelector("#app")!;
 
@@ -24,6 +25,11 @@ routerManager.on("/login", () => {
 routerManager.on("/register", () => {
   const registerPage = new Register();
   application.innerHTML = registerPage.render();
+});
+
+routerManager.on("/feed", () => {
+  const feedPage = new Feed();
+  application.innerHTML = feedPage.render();
 });
 
 routerManager.resolve();

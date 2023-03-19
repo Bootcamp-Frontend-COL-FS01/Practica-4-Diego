@@ -2,13 +2,13 @@ import AbstractComponent from "../shared/abstract-component";
 import html from "html-template-tag";
 
 export default class Home extends AbstractComponent {
-  render() {
+  render(): string {
     return html`
       <div class="container p-5 mt-3">
         <div class="box">
           <h1 class="has-text-weight-semibold is-size-1">Hello there!</h1>
           <h2 class="has-text-weight-medium is-size-5">
-            Welcome to your favorite Social Networking Site!
+            Welcome to your favorite Social Networking Site :)
           </h2>
           <p class="mt-3">
             Connect with friends, family, and people from all over the world on
