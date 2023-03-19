@@ -1,17 +1,28 @@
 import "./index.css";
 import Navigo from "navigo";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
 
 const application: HTMLDivElement = document.querySelector("#app")!;
-const routerManager = new Navigo("/", {
+
+const routerManager: Navigo = new Navigo("/", {
   hash: true,
 });
 
 routerManager.on(() => {
-  application.innerHTML = "<div> I am a div! </div>";
+  const homePage = new Home();
+  application.innerHTML = homePage.render();
 });
 
 routerManager.on("/login", () => {
-  application.innerHTML = "<div> I am a second div! </div>";
+  const loginPage = new Login();
+  application.innerHTML = loginPage.render();
+});
+
+routerManager.on("/register", () => {
+  const registerPage = new Register();
+  application.innerHTML = registerPage.render();
 });
 
 routerManager.resolve();
