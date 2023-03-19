@@ -5,7 +5,7 @@ export default class UserInfo extends AbstractComponent {
   render(): string {
     return html`
       <div class="box">
-        <h3 class="is-size-4">Welcome again!</h3>
+        <h3 class="is-size-4 has-text-weight-semibold">Welcome again!</h3>
         <div class="content">
           <ul>
             <li>Joan B. Pratt</li>
