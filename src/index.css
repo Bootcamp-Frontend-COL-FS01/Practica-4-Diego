@@ -1,0 +1,88 @@
+html {
+  background: #1a1f24;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.7;
+}
+
+p {
+  color: #73828c;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.outer-container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 50px;
+}
+
+@media (max-width: 1000px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+.flex-item {
+  border: 1px solid #fbfbf2;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+
+.game-container {
+  margin-top: 50px;
+}
+
+.board-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-bottom: 20px;
+}
+
+.board-element {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 40px;
+  justify-content: center;
+  border: 1px solid #fbfbf2;
+  min-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restart-button {
+  font-family: inherit;
+  line-height: inherit;
+  font-size: large;
+  color: #ffffff;
+  background-color: #e71d36;
+  padding: 10px;
+  border: 1px solid #1a1f24;
+  border-radius: 5px;
+}

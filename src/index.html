@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body class="outer-container">
+    <h1>Tic Tac Toe :)</h1>
+    <p>
+      Welcome guests! Tic Tac Toe is a classic two-player game that is typically
+      played on a 3x3 grid. The game is also known as "noughts and crosses" or
+      "Xs and Os".
+    </p>
+    <p>
+      The game is played by two players who take turns marking spaces on the
+      grid with their respective symbols. Player 1 typically uses "X" as their
+      symbol while player 2 uses "O". The objective of the game is to get three
+      of your symbols in a row, either horizontally, vertically, or diagonally.
+    </p>
+    <div class="flex-container">
+      <div class="flex-item">
+        <h2>Player (O)</h2>
+        <p>
+          A good strategy for player 1 in Tic Tac Toe is to start by placing
+          their first "O" mark in the center square of the grid. This move
+          provides the greatest number of options for creating a winning
+          pattern, as it allows for the possibility of creating a row of three
+          symbols in any direction.
+        </p>
+      </div>
+      <div class="flex-item">
+        <h2>Player (X)</h2>
+        <p>
+          A good strategy for player 2 in Tic Tac Toe is to start by placing
+          their first "X" mark in one of the corner squares of the grid. This
+          move creates more potential winning patterns for player 2, as it
+          allows for the possibility of creating two diagonal patterns and one
+          horizontal or vertical pattern.
+        </p>
+      </div>
+    </div>
+    <div class="game-container">
+      <h2>The board</h2>
+      <p id="turn">Current turn is for Player (O).</p>
+      <div class="board-container">
+        <div class="board-element" id="1A"></div>
+        <div class="board-element" id="1B"></div>
+        <div class="board-element" id="1C"></div>
+        <div class="board-element" id="2A"></div>
+        <div class="board-element" id="2B"></div>
+        <div class="board-element" id="2C"></div>
+        <div class="board-element" id="3A"></div>
+        <div class="board-element" id="3B"></div>
+        <div class="board-element" id="3C"></div>
+      </div>
+      <button class="restart-button">Restart</button>
+    </div>
+  </body>
+</html>
