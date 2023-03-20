@@ -1,15 +1,11 @@
 import Component from "../shared/component";
 import html from "html-template-tag";
-import { User } from "../shared/types";
+import UserService from "../services/user-service";
 
 export default class IsLoggedMessage extends Component {
   render(): string {
-    const currentUserEmail: string = localStorage.getItem("currentUser")!;
-    const data: User[] = JSON.parse(localStorage.getItem("users")!).userList;
-    const currentUser: User = data.filter(
-      (user) => user.email === currentUserEmail
-    )[0];
-    const { email, firstName, lastName } = currentUser;
+    const UserServicePrivate = new UserService();
+    const { email, firstName, lastName } = UserServicePrivate.getCurrentUser();
 
     return html`
       <div class="container p-5 mt-3 custom-max-width">

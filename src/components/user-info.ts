@@ -12,10 +12,6 @@ export default class UserInfo extends Component {
             <li>user@domain.com</li>
           </ul>
         </div>
-        <p>
-          Until now, you have published 0 posts. Keep exploring our application
-        </p>
-        <button class="button is-danger is-outlined mt-3">Log out</button>
       </div>
     `;
   }

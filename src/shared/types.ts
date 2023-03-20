@@ -4,3 +4,9 @@ export type User = {
   email: string;
   password: string;
 };
+
+export type PrivateUser = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};
