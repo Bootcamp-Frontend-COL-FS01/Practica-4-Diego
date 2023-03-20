@@ -4,13 +4,25 @@ import NavBar from "../components/nav-bar";
 import UserInfo from "../components/user-info";
 import PostCard from "../components/post-card";
 import StatsInfo from "../components/stats-info";
+import isUnauthorizedMessage from "../components/is-unauthorized-message";
 
 export default class Feed extends Component {
   render(): string {
+    const application: HTMLDivElement = document.querySelector("#app")!;
     const navBarComponent = new NavBar();
     const userInfoComponent = new UserInfo();
     const postCardComponent = new PostCard();
     const statsInfoComponent = new StatsInfo();
+    //Since statsInfoComponent is a ReactiveComponent, but is not top level
+    //The binding should be done in the Feed component
+    statsInfoComponent.bindReactiveLogic(application);
+    const isUnauthorizedMessageComponent = new isUnauthorizedMessage();
+
+    //Check if there is no user in the session
+    //Display a message to redirect back to home
+    if (!localStorage.getItem("currentUser")) {
+      return html` $${isUnauthorizedMessageComponent.render()} `;
+    }
 
     return html`
       $${navBarComponent.render()}

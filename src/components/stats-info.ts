@@ -1,7 +1,16 @@
-import Component from "../shared/component";
+import ReactiveComponent from "../shared/reactive-component";
 import html from "html-template-tag";
 
-export default class StatsInfo extends Component {
+export default class StatsInfo extends ReactiveComponent {
+  implementReactiveLogic(): string {
+    return /*javascript*/ `
+    window.handleLogout = async () => {
+      localStorage.removeItem("currentUser");
+      window.location.replace("/#");
+    }
+    `;
+  }
+
   render(): string {
     return html`
       <div class="box">
@@ -9,7 +18,12 @@ export default class StatsInfo extends Component {
         <p class="mt-3">
           Until now, you have published 0 posts. Keep exploring our application
         </p>
-        <button class="button is-danger is-outlined mt-3">Log out</button>
+        <button
+          class="button is-danger is-outlined mt-3"
+          onclick="handleLogout()"
+        >
+          Log out
+        </button>
       </div>
     `;
   }
