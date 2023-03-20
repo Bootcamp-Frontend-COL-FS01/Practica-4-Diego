@@ -26,6 +26,7 @@ routerManager.on(() => {
 routerManager.on("/login", () => {
   const loginPage = new Login();
   application.innerHTML = loginPage.render();
+  loginPage.bindReactiveLogic(application);
 });
 
 routerManager.on("/register", () => {

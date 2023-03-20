@@ -1,4 +1,5 @@
 import ReactiveComponent from "../shared/reactive-component";
+import IsLoggedMessage from "../components/is-logged-message";
 import html from "html-template-tag";
 
 export default class Register extends ReactiveComponent {
@@ -9,13 +10,22 @@ export default class Register extends ReactiveComponent {
       const rawData = new FormData(event.target);
       const cleanedData = Object.fromEntries(rawData.entries());
       const storageData = JSON.parse(localStorage.getItem("users"));
-      const newStorageData = {userList: [...storageData.userList, cleanedData]};
-      console.log(newStorageData);
-      window.location.replace("/#/login");
+      if (!storageData.userList.some((user)=>(user.email === cleanedData.email? true: false))){
+        const userList = [...storageData.userList, cleanedData];
+        console.log(userList);
+        localStorage.setItem("users", JSON.stringify({ userList }));
+        window.location.replace("/#/login");
+      }
     };`;
   }
 
   render(): string {
+    //Check if there is a user in session
+    if (localStorage.getItem("currentUser")) {
+      const isLoggedMessageComponent = new IsLoggedMessage();
+      return html` $${isLoggedMessageComponent.render()} `;
+    }
+
     return html`
       <div class="container p-5 mt-3 custom-max-width">
         <div class="box">
