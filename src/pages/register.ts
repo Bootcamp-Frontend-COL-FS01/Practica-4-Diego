@@ -1,7 +1,19 @@
-import AbstractComponent from "../shared/abstract-component";
+import ReactiveComponent from "../shared/reactive-component";
 import html from "html-template-tag";
 
-export default class Register extends AbstractComponent {
+export default class Register extends ReactiveComponent {
+  constructor() {
+    super();
+  }
+  implementReactiveLogic(): string {
+    return /*javascript*/ `
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      console.log(event);
+      console.log("Hello world!");
+    };`;
+  }
+
   render(): string {
     return html`
       <div class="container p-5 mt-3 custom-max-width">
@@ -12,7 +24,7 @@ export default class Register extends AbstractComponent {
             community. Create a free account and set up your personalized
             profile in just a few easy steps. Do no wait any longer!
           </p>
-          <form class="mt-3">
+          <form class="mt-3" onsubmit="handleSubmit(event)">
             <div class="field">
               <label class="label">Email</label>
               <div class="control">
@@ -47,7 +59,7 @@ export default class Register extends AbstractComponent {
                 <input class="input" type="password" />
               </div>
             </div>
-            <button class="button is-primary">Sign up</button>
+            <button class="button is-primary" type="submit">Sign up</button>
           </form>
         </div>
       </div>

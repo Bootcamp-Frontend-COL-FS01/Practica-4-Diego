@@ -1,7 +1,7 @@
-import AbstractComponent from "../shared/abstract-component";
+import Component from "../shared/component";
 import html from "html-template-tag";
 
-export default class UserInfo extends AbstractComponent {
+export default class UserInfo extends Component {
   render(): string {
     return html`
       <div class="box">

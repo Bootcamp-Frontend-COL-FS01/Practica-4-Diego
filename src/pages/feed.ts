@@ -1,10 +1,10 @@
-import AbstractComponent from "../shared/abstract-component";
+import Component from "../shared/component";
 import html from "html-template-tag";
 import NavBar from "../components/nav-bar";
 import UserInfo from "../components/user-info";
 import PostCard from "../components/post-card";
 
-export default class Feed extends AbstractComponent {
+export default class Feed extends Component {
   render(): string {
     const navBarComponent = new NavBar();
     const userInfoComponent = new UserInfo();

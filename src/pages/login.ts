@@ -1,7 +1,7 @@
-import AbstractComponent from "../shared/abstract-component";
+import Component from "../shared/component";
 import html from "html-template-tag";
 
-export default class Login extends AbstractComponent {
+export default class Login extends Component {
   render(): string {
     return html`
       <div class="container p-5 mt-3 custom-max-width">
