@@ -5,7 +5,11 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Feed from "./pages/feed";
-import { javascript } from "webpack";
+import { createClient } from "@supabase/supabase-js";
+import supabaseConfig from "./utils/supabase-config";
+
+const { supabaseUrl, annonKey } = supabaseConfig;
+export const localSupabaseClient = createClient(supabaseUrl, annonKey);
 
 const application: HTMLDivElement = document.querySelector("#app")!;
 

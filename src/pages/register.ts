@@ -2,15 +2,14 @@ import ReactiveComponent from "../shared/reactive-component";
 import html from "html-template-tag";
 
 export default class Register extends ReactiveComponent {
-  constructor() {
-    super();
-  }
   implementReactiveLogic(): string {
     return /*javascript*/ `
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
-      console.log(event);
-      console.log("Hello world!");
+      const rawData = new FormData(event.target);
+      const cleanedData = Object.fromEntries(rawData.entries());
+      const {email, password} = cleanedData;
+      console.log(cleanedData);
     };`;
   }
 
@@ -30,36 +29,46 @@ export default class Register extends ReactiveComponent {
               <div class="control">
                 <input
                   class="input"
+                  name="email"
                   type="email"
                   placeholder="user@domain.com"
+                  required
                 />
               </div>
             </div>
             <div class="field">
               <label class="label">First Name</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Barbara" />
+                <input
+                  class="input"
+                  name="firstName"
+                  type="text"
+                  placeholder="Barbara"
+                  required
+                />
               </div>
             </div>
             <div class="field">
-              <label class="label">Full Name</label>
+              <label class="label">Last Name</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Williams" />
+                <input
+                  class="input"
+                  name="lastName"
+                  type="text"
+                  placeholder="Williams"
+                  required
+                />
               </div>
             </div>
             <div class="field">
               <label class="label">Password</label>
               <div class="control">
-                <input class="input" type="password" />
+                <input class="input" name="password" type="password" required />
               </div>
             </div>
-            <div class="field">
-              <label class="label">Confirm password</label>
-              <div class="control">
-                <input class="input" type="password" />
-              </div>
-            </div>
-            <button class="button is-primary" type="submit">Sign up</button>
+            <button class="button is-primary" type="submit">
+              <a href="/login" data-navigo class="unstyled-link"> Sign up </a>
+            </button>
           </form>
         </div>
       </div>

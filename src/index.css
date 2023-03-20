@@ -1,3 +1,7 @@
 .custom-max-width {
   max-width: 700px !important;
 }
+
+.unstyled-link {
+  color: inherit;
+}
