@@ -6,6 +6,7 @@ export default abstract class ReactiveComponent extends Component {
   bindReactiveLogic(app: HTMLDivElement): void {
     const script = document.createElement("script");
     script.innerHTML = this.implementReactiveLogic();
+    script.type = "module";
     app.appendChild(script);
   }
 }

@@ -5,14 +5,15 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Feed from "./pages/feed";
-import { createClient } from "@supabase/supabase-js";
-import supabaseConfig from "./utils/supabase-config";
+import populateLocalStorage from "./utils/populate-local-storage";
 
-const { supabaseUrl, annonKey } = supabaseConfig;
-export const localSupabaseClient = createClient(supabaseUrl, annonKey);
+// Execute script for painting the app with demo data
+populateLocalStorage();
 
+// Select the entry point. SPA architecture
 const application: HTMLDivElement = document.querySelector("#app")!;
 
+// Creating our router manager wih client-side routing
 const routerManager: Navigo = new Navigo("/", {
   hash: true,
 });

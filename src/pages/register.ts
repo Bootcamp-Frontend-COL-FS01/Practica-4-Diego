@@ -4,12 +4,14 @@ import html from "html-template-tag";
 export default class Register extends ReactiveComponent {
   implementReactiveLogic(): string {
     return /*javascript*/ `
-    const handleSubmit = async (event) => {
+    window.handleRegisterSubmit = async (event) => {
       event.preventDefault();
       const rawData = new FormData(event.target);
       const cleanedData = Object.fromEntries(rawData.entries());
-      const {email, password} = cleanedData;
-      console.log(cleanedData);
+      const storageData = JSON.parse(localStorage.getItem("users"));
+      const newStorageData = {userList: [...storageData.userList, cleanedData]};
+      console.log(newStorageData);
+      window.location.replace("/#/login");
     };`;
   }
 
@@ -23,7 +25,7 @@ export default class Register extends ReactiveComponent {
             community. Create a free account and set up your personalized
             profile in just a few easy steps. Do no wait any longer!
           </p>
-          <form class="mt-3" onsubmit="handleSubmit(event)">
+          <form class="mt-3" onsubmit="handleRegisterSubmit(event)">
             <div class="field">
               <label class="label">Email</label>
               <div class="control">
@@ -66,9 +68,7 @@ export default class Register extends ReactiveComponent {
                 <input class="input" name="password" type="password" required />
               </div>
             </div>
-            <button class="button is-primary" type="submit">
-              <a href="/login" data-navigo class="unstyled-link"> Sign up </a>
-            </button>
+            <button class="button is-primary" type="submit">Sign Up</button>
           </form>
         </div>
       </div>
