@@ -1,10 +1,11 @@
 import Component from "../shared/component";
 import html from "html-template-tag";
 import UserService from "../services/user-service";
+import { PrivateUser } from "../shared/types";
 
 export default class IsLoggedMessage extends Component {
   render(): string {
-    const user = new UserService().getCurrentUser();
+    const user: PrivateUser = new UserService().getCurrentUser();
     const { firstName, lastName } = user;
 
     return html`

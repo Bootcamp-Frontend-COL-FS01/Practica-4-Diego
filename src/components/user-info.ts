@@ -1,10 +1,11 @@
 import UserService from "../services/user-service";
 import Component from "../shared/component";
 import html from "html-template-tag";
+import { PrivateUser } from "../shared/types";
 
 export default class UserInfo extends Component {
   render(): string {
-    const user = new UserService().getCurrentUser();
+    const user: PrivateUser = new UserService().getCurrentUser();
     const { email, firstName, lastName } = user;
 
     return html`

@@ -21,7 +21,7 @@ export default class Register extends ReactiveComponent {
   render(): string {
     //Check if there is a user in session
     if (localStorage.getItem("currentUser")) {
-      const isLoggedMessageComponent = new IsLoggedMessage();
+      const isLoggedMessageComponent: IsLoggedMessage = new IsLoggedMessage();
       return html` $${isLoggedMessageComponent.render()} `;
     }
 

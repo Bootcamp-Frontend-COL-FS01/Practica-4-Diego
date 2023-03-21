@@ -11,14 +11,15 @@ import { Post } from "../shared/types";
 export default class Feed extends Component {
   render(): string {
     const application: HTMLDivElement = document.querySelector("#app")!;
-    const navBarComponent = new NavBar();
-    const userInfoComponent = new UserInfo();
-    const statsInfoComponent = new StatsInfo();
+    const navBarComponent: NavBar = new NavBar();
+    const userInfoComponent: UserInfo = new UserInfo();
+    const statsInfoComponent: StatsInfo = new StatsInfo();
     //Since statsInfoComponent is a ReactiveComponent, but is not top level
     //The binding must be done in the Feed component
     statsInfoComponent.bindReactiveLogic(application);
-    const isUnauthorizedMessageComponent = new isUnauthorizedMessage();
-    const postData = new postService().getAll();
+    const isUnauthorizedMessageComponent: isUnauthorizedMessage =
+      new isUnauthorizedMessage();
+    const postData: Post[] = new postService().getAll();
 
     //Check if there is no user in the session
     //Display a message to redirect back to home
