@@ -5,18 +5,22 @@ import UserInfo from "../components/user-info";
 import PostCard from "../components/post-card";
 import StatsInfo from "../components/stats-info";
 import isUnauthorizedMessage from "../components/is-unauthorized-message";
+import postService from "../services/post-service";
+import { Post } from "../shared/types";
 
 export default class Feed extends Component {
   render(): string {
     const application: HTMLDivElement = document.querySelector("#app")!;
     const navBarComponent = new NavBar();
     const userInfoComponent = new UserInfo();
-    const postCardComponent = new PostCard();
     const statsInfoComponent = new StatsInfo();
     //Since statsInfoComponent is a ReactiveComponent, but is not top level
-    //The binding should be done in the Feed component
+    //The binding must be done in the Feed component
     statsInfoComponent.bindReactiveLogic(application);
     const isUnauthorizedMessageComponent = new isUnauthorizedMessage();
+    const postData = new postService().getAll();
+
+    console.log(postData);
 
     //Check if there is no user in the session
     //Display a message to redirect back to home
@@ -30,12 +34,12 @@ export default class Feed extends Component {
         <div class="columns mt-5 is-variable is-6">
           <div class="column">$${userInfoComponent.render()}</div>
           <div class="column is-half">
-            $${postCardComponent.render()} $${postCardComponent.render()}
-            $${postCardComponent.render()}
+            ${postData.map(
+              (post: Post) => html`$${new PostCard(post).render()}`
+            )}
           </div>
           <div class="column">$${statsInfoComponent.render()}</div>
         </div>
-        <div>Hello again</div>
       </div>
     `;
   }

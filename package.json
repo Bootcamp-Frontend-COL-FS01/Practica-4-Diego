@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+    "@types/uuid": "^9.0.1",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
@@ -51,6 +52,7 @@
   "dependencies": {
     "bulma": "^0.9.4",
     "html-template-tag": "^4.0.1",
-    "navigo": "^8.11.1"
+    "navigo": "^8.11.1",
+    "uuid": "^9.0.0"
   }
 }

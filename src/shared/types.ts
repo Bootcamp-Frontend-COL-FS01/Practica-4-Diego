@@ -10,3 +10,10 @@ export type PrivateUser = {
   lastName: string;
   email: string;
 };
+
+export type Post = {
+  user: PrivateUser;
+  title: string;
+  text: string;
+  id: string;
+};
