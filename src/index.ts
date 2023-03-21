@@ -5,12 +5,15 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Feed from "./pages/feed";
-import populateLocalStorage from "./utils/populate-local-storage";
+import AddNew from "./pages/add-new";
+import populateUsersData from "./utils/populate-users-data";
+import populatePostsData from "./utils/populate-posts-data";
 
-// Execute script for painting the app with demo data
-populateLocalStorage();
+// Executing the script for painting the app with demo data (users and posts)
+populateUsersData();
+populatePostsData();
 
-// Select the entry point. SPA architecture
+// Select the entry point. A SPA architecture is used
 const application: HTMLDivElement = document.querySelector("#app")!;
 
 // Creating our router manager wih client-side routing
@@ -18,6 +21,7 @@ const routerManager: Navigo = new Navigo("/", {
   hash: true,
 });
 
+//Handling the distinct routes with a Page
 routerManager.on(() => {
   const homePage = new Home();
   application.innerHTML = homePage.render();
@@ -40,4 +44,11 @@ routerManager.on("/feed", () => {
   application.innerHTML = feedPage.render();
 });
 
+routerManager.on("/new", () => {
+  const addNewPage = new AddNew();
+  application.innerHTML = addNewPage.render();
+  addNewPage.bindReactiveLogic(application);
+});
+
+//Resolving the router is needed in order to apply the routing
 routerManager.resolve();

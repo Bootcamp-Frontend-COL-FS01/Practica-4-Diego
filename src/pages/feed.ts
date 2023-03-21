@@ -20,8 +20,6 @@ export default class Feed extends Component {
     const isUnauthorizedMessageComponent = new isUnauthorizedMessage();
     const postData = new postService().getAll();
 
-    console.log(postData);
-
     //Check if there is no user in the session
     //Display a message to redirect back to home
     if (!localStorage.getItem("currentUser")) {

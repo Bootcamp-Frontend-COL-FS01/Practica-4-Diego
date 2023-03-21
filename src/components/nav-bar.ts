@@ -9,7 +9,7 @@ export default class NavBar extends Component {
         role="navigation"
       >
         <h6 class="has-text-weight-semibold is-size-5">Socialize Up App</h6>
-        <a href="#feed" class="button is-primary">Add new</a>
+        <a href="/new" class="button is-primary" data-navigo>Add new</a>
       </nav>
     `;
   }

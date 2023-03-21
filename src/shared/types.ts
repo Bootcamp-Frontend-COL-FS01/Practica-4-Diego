@@ -5,6 +5,8 @@ export type User = {
   password: string;
 };
 
+// Rationale: In many instances, the password is not required
+// The majority of components just use the name and email
 export type PrivateUser = {
   firstName: string;
   lastName: string;

@@ -1,58 +1,7 @@
-import { User, Post } from "../shared/types";
+import { Post } from "../shared/types";
 import { v4 as uuidv4 } from "uuid";
 
-const populateLocalStorage = (): void => {
-  const userList: User[] = [
-    {
-      email: "jesselandreth@outlook.com",
-      firstName: "Jesse",
-      lastName: "Landreth",
-      password: "5Aj74j#E",
-    },
-    {
-      email: "dorabeaver@gmail.com",
-      firstName: "Dora",
-      lastName: " Beavers",
-      password: "Ca@9664r",
-    },
-    {
-      email: "johnaguilar@hotmail.com",
-      firstName: "John",
-      lastName: "Aguilar",
-      password: "sP1z50@@",
-    },
-    {
-      email: "willieramos@gmail.com",
-      firstName: "Willie",
-      lastName: "Ramos",
-      password: "dN@5Q72#",
-    },
-    {
-      email: "joanedgar@gmail.com",
-      firstName: "Joan",
-      lastName: "Edgar",
-      password: "@rvxZ950",
-    },
-    {
-      email: "jamesmccoy@hotmail.com",
-      firstName: "James",
-      lastName: "McCoy",
-      password: "paP579*1",
-    },
-    {
-      email: "thomaslefebre@jala.com",
-      firstName: "Thomas",
-      lastName: "Lefebre",
-      password: "%52l6Y2c",
-    },
-    {
-      email: "winfrednelson@jalasoft.com",
-      firstName: "Winfred",
-      lastName: "Nelson",
-      password: "46$8E4s5",
-    },
-  ];
-
+const populatePostsData = (): void => {
   const postList: Post[] = [
     {
       user: {
@@ -72,17 +21,6 @@ const populateLocalStorage = (): void => {
       },
       title: "How to Build a Successful Remote Team",
       text: "In today's fast-paced business world, remote work is becoming increasingly common. But managing a remote team comes with its own unique challenges. To build a successful remote team, it's important to establish clear communication channels, set clear goals and expectations, and provide ample opportunities for collaboration and feedback. By taking these steps, you can help your team thrive no matter where they're located.",
-      id: uuidv4(),
-    },
-    {
-      user: {
-        email: "thomaslefebre@jala.com",
-        firstName: "Thomas",
-        lastName: "Lefebre",
-      },
-      title:
-        "The Power of Positive Thinking: How to Cultivate a Positive Mindset",
-      text: "our thoughts and attitudes have a powerful impact on your life. By cultivating a positive mindset, you can attract more positivity and abundance into your life. To do this, focus on the things you're grateful for, visualize success and happiness, and surround yourself with supportive people who uplift and inspire you.",
       id: uuidv4(),
     },
     {
@@ -107,12 +45,10 @@ const populateLocalStorage = (): void => {
       id: uuidv4(),
     },
   ];
-  localStorage.setItem("users", JSON.stringify({ userList }));
-  localStorage.setItem("posts", JSON.stringify({ postList }));
-  const data: User[] = JSON.parse(localStorage.getItem("users")!);
-  const data2: Post[] = JSON.parse(localStorage.getItem("posts")!);
-  console.log(data);
-  console.log(data2);
+
+  if (!localStorage.getItem("posts")) {
+    localStorage.setItem("posts", JSON.stringify({ postList }));
+  }
 };
 
-export default populateLocalStorage;
+export default populatePostsData;

@@ -12,7 +12,6 @@ export default class Register extends ReactiveComponent {
       const storageData = JSON.parse(localStorage.getItem("users"));
       if (!storageData.userList.some((user)=>(user.email === cleanedData.email? true: false))){
         const userList = [...storageData.userList, cleanedData];
-        console.log(userList);
         localStorage.setItem("users", JSON.stringify({ userList }));
         window.location.replace("/#/login");
       }

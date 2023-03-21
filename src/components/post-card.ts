@@ -42,7 +42,9 @@ export default class PostCard extends Component {
             </div>
           </div>
           <h6 class="has-text-weight-semibold is-size-6">${title}</h6>
-          <p class="mt-3">${text}</p>
+          <div class="content">
+            <p class="mt-3">${text}</p>
+          </div>
         </div>
       </div>
     `;
