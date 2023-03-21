@@ -4,8 +4,8 @@ import html from "html-template-tag";
 
 export default class UserInfo extends Component {
   render(): string {
-    const UserServicePrivate = new UserService();
-    const { email, firstName, lastName } = UserServicePrivate.getCurrentUser();
+    const user = new UserService().getCurrentUser();
+    const { email, firstName, lastName } = user;
 
     return html`
       <div class="box">

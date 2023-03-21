@@ -15,10 +15,9 @@ export default class StatsInfo extends ReactiveComponent {
   }
 
   render(): string {
-    const currentUserEmail: string = new UserService().getCurrentUserEmail();
-    const postsByUser: Post[] = new postService().getByUserEmail(
-      currentUserEmail
-    );
+    const userEmail: string = new UserService().getCurrentUserEmail();
+    const postsByUser: Post[] = new postService().getByUserEmail(userEmail);
+
     return html`
       <div class="box">
         <h3 class="is-size-4 has-text-weight-semibold">Stats info</h3>

@@ -4,8 +4,8 @@ import UserService from "../services/user-service";
 
 export default class IsLoggedMessage extends Component {
   render(): string {
-    const UserServicePrivate = new UserService();
-    const { email, firstName, lastName } = UserServicePrivate.getCurrentUser();
+    const user = new UserService().getCurrentUser();
+    const { firstName, lastName } = user;
 
     return html`
       <div class="container p-5 mt-3 custom-max-width">
