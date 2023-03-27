@@ -1,8 +1,9 @@
 import { PrivateUser, User } from "../shared/types";
+import EntityService from "./entity-service";
 
-export default class UserService {
-  getAll(): User[] {
-    return JSON.parse(localStorage.getItem("users")!).userList;
+export default class UserService extends EntityService {
+  getAll<User>(): User[] {
+    return super.getAll("users", "userList");
   }
 
   getCurrentEmail(): string {
