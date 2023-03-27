@@ -7,6 +7,7 @@ import StatsInfo from "../components/stats-info";
 import isUnauthorizedMessage from "../components/is-unauthorized-message";
 import postService from "../services/post-service";
 import { Post } from "../shared/types";
+import UserService from "../services/user-service";
 
 export default class Feed extends Component {
   render(): string {
@@ -17,16 +18,18 @@ export default class Feed extends Component {
     //Since statsInfoComponent is a ReactiveComponent, but is not top level
     //The binding must be done in the Feed component
     statsInfoComponent.bindReactiveLogic(application);
-    const isUnauthorizedMessageComponent: isUnauthorizedMessage =
-      new isUnauthorizedMessage();
     const postData: Post[] = new postService().getAll();
 
     //Check if there is no user in the session
     //Display a message to redirect back to home
-    if (!localStorage.getItem("currentUser")) {
+    const isSessionActive = new UserService().doesCurrentExists();
+    if (!isSessionActive) {
+      const isUnauthorizedMessageComponent: isUnauthorizedMessage =
+        new isUnauthorizedMessage();
       return html` $${isUnauthorizedMessageComponent.render()} `;
     }
 
+    // If there is one, simply render the feed page
     return html`
       $${navBarComponent.render()}
       <div class="container p-5 mt-6">

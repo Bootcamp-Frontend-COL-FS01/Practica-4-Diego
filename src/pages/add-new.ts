@@ -1,6 +1,8 @@
 import ReactiveComponent from "../shared/reactive-component";
 import html from "html-template-tag";
 import { v4 as uuidv4 } from "uuid";
+import isUnauthorizedMessage from "../components/is-unauthorized-message";
+import UserService from "../services/user-service";
 
 export default class AddNew extends ReactiveComponent {
   implementReactiveLogic(): string {
@@ -26,6 +28,16 @@ export default class AddNew extends ReactiveComponent {
   }
 
   render(): string {
+    //Check if there is no user in the session
+    //Display a message to redirect back to home
+    const isSessionActive = new UserService().doesCurrentExists();
+    if (!isSessionActive) {
+      const isUnauthorizedMessageComponent: isUnauthorizedMessage =
+        new isUnauthorizedMessage();
+      return html` $${isUnauthorizedMessageComponent.render()} `;
+    }
+
+    // If there is one, simply render the page for add new posts
     return html`
       <div class="container p-5 mt-3 custom-max-width">
         <div class="box">
