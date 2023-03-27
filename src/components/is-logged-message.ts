@@ -5,8 +5,8 @@ import { PrivateUser } from "../shared/types";
 
 export default class IsLoggedMessage extends Component {
   render(): string {
-    const user: PrivateUser = new UserService().getCurrentUser();
-    const { firstName, lastName } = user;
+    const currentUser: PrivateUser = new UserService().getCurrent();
+    const { firstName, lastName } = currentUser;
 
     return html`
       <div class="container p-5 mt-3 custom-max-width">

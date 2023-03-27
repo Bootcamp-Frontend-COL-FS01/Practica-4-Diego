@@ -5,8 +5,8 @@ import { PrivateUser } from "../shared/types";
 
 export default class UserInfo extends Component {
   render(): string {
-    const user: PrivateUser = new UserService().getCurrentUser();
-    const { email, firstName, lastName } = user;
+    const currentUser: PrivateUser = new UserService().getCurrent();
+    const { email, firstName, lastName } = currentUser;
 
     return html`
       <div class="box">

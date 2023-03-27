@@ -5,13 +5,17 @@ export default class UserService {
     return JSON.parse(localStorage.getItem("users")!).userList;
   }
 
-  getCurrentUserEmail(): string {
+  getCurrentEmail(): string {
     return localStorage.getItem("currentUser")!;
   }
 
-  getCurrentUser(): PrivateUser {
+  doesCurrentExists(): boolean {
+    return Boolean(this.getCurrentEmail());
+  }
+
+  getCurrent(): PrivateUser {
     //Get the data using the previous methods
-    const currentUserEmail: string = this.getCurrentUserEmail();
+    const currentUserEmail: string = this.getCurrentEmail();
     const data: User[] = this.getAll();
 
     //Finding current user

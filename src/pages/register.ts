@@ -1,6 +1,7 @@
 import ReactiveComponent from "../shared/reactive-component";
 import IsLoggedMessage from "../components/is-logged-message";
 import html from "html-template-tag";
+import UserService from "../services/user-service";
 
 export default class Register extends ReactiveComponent {
   implementReactiveLogic(): string {
@@ -20,11 +21,13 @@ export default class Register extends ReactiveComponent {
 
   render(): string {
     //Check if there is a user in session
-    if (localStorage.getItem("currentUser")) {
+    const isSessionActive = new UserService().doesCurrentExists();
+    if (isSessionActive) {
       const isLoggedMessageComponent: IsLoggedMessage = new IsLoggedMessage();
       return html` $${isLoggedMessageComponent.render()} `;
     }
 
+    //If not, simply render the signup form
     return html`
       <div class="container p-5 mt-3 custom-max-width">
         <div class="box">

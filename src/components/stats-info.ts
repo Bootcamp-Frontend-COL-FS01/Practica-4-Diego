@@ -15,8 +15,10 @@ export default class StatsInfo extends ReactiveComponent {
   }
 
   render(): string {
-    const userEmail: string = new UserService().getCurrentUserEmail();
-    const postsByUser: Post[] = new postService().getByUserEmail(userEmail);
+    const currentUserEmail: string = new UserService().getCurrentEmail();
+    const postsByUser: Post[] = new postService().getByUserEmail(
+      currentUserEmail
+    );
 
     return html`
       <div class="box">

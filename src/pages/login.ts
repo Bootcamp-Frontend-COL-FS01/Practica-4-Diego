@@ -1,6 +1,7 @@
 import IsLoggedMessage from "../components/is-logged-message";
 import ReactiveComponent from "../shared/reactive-component";
 import html from "html-template-tag";
+import UserService from "../services/user-service";
 
 export default class Login extends ReactiveComponent {
   implementReactiveLogic(): string {
@@ -21,7 +22,8 @@ export default class Login extends ReactiveComponent {
 
   render(): string {
     //Check if there is a user in session
-    if (localStorage.getItem("currentUser")) {
+    const isSessionActive = new UserService().doesCurrentExists();
+    if (isSessionActive) {
       const isLoggedMessageComponent: IsLoggedMessage = new IsLoggedMessage();
       return html` $${isLoggedMessageComponent.render()} `;
     }
