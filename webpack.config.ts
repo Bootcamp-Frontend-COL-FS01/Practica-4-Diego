@@ -4,6 +4,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = isProduction
@@ -23,6 +24,9 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new ForkTsCheckerWebpackPlugin({
       async: false,
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "*.toml" }],
     }),
   ],
   mode: isProduction ? "production" : "development",

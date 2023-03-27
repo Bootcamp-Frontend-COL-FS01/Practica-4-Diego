@@ -1,73 +1,28 @@
-# Tic Tac Toe with Webpack (Updated with TypeScript)
+# Practice 4 (Diego Murillo)
 
-The present project aims to implement a simple configuration file with webpack in order to deliver an optmized vanilla TS project.
+### Description
 
-A new plugin was added in order to minify the CSS files.
+The present project aimed to build a Single Page Application for a Social Networking App. The main features were the ability to sign-up, log-in and make new posts. You can check the [slides](https://docs.google.com/presentation/d/1WG0MpKYoyLDtlNRa7VnYRKwJcpBRjgIu9zZ9fUvJMEA/edit?usp=sharing) of the class presentation.
 
-The relevant webpack file is:
+![Image](https://dl.dropboxusercontent.com/s/ksv6rwmjfuhaokq/image%201%20%281%29.png?dl=0)
 
-```
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+### Tech Stack
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+The following technologies were used in order to get the project running:
 
-const isProduction = process.env.NODE_ENV == "production";
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : "style-loader";
+* TypeScript
+* Bulma CSS
+* Navigo JS
+* Html-template-tag
+* LocalStorage API
 
-module.exports = {
-  entry: "./src/index.ts",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Output Management",
-      template: "src/index.html",
-    }),
-    new MiniCssExtractPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-  ],
-  mode: isProduction ? "production" : "development",
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [stylesHandler, "css-loader"],
-      },
-      {
-        test: /\.(ts|js)?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-typescript"],
-          },
-        },
-      },
-    ],
-  },
-  optimization: {
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
-  devServer: {
-    static: path.join(__dirname, "dist"),
-    compress: true,
-    port: 4000,
-  },
-};
+### Running the project
+
+You can check the live project at [Netlify](https://practice-4-front-end.netlify.app/). Optionally, you can follow the instructions for running the project in your personal machine:
 
 ```
-
-You can check the live demo at [Netlify](https://challenge-webpack-tictactoe-with-ts.netlify.app/):
-
-![Image](https://dl.dropboxusercontent.com/s/vqtzv1ob0fe3ebp/image%201.png?dl=0)
+git clone https://github.com/Bootcamp-Frontend-COL-FS01/Practica-4-Diego.git
+cd Practica-4-Diego
+npm install
+npm start
+```

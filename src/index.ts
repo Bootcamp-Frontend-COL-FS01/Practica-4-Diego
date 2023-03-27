@@ -1,62 +1,54 @@
+import "bulma/css/bulma.css";
 import "./index.css";
-import { GameState, Movement, Player } from "./common/types";
-import { players, winnerRoutes } from "./config/game-elements";
-import getPlayerTurn from "./utils/get-player-turn";
-import isValidPlay from "./utils/is-valid-play";
-import isWinner from "./utils/is-winner";
+import Navigo from "navigo";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Feed from "./pages/feed";
+import AddNew from "./pages/add-new";
+import populateUsersData from "./utils/populate-users-data";
+import populatePostsData from "./utils/populate-posts-data";
 
-let gameState: GameState = [];
+// Executing the script for painting the app with demo data (users and posts)
+populateUsersData();
+populatePostsData();
 
-const board: HTMLDivElement = document.querySelector(".board-container")!;
-const button: HTMLButtonElement = document.querySelector(".restart-button")!;
-const turnMessage: HTMLParagraphElement = document.querySelector("#turn")!;
+// Select the entry point. A SPA architecture is used
+const application: HTMLDivElement = document.querySelector("#app")!;
 
-// Event delegation pattern
-const handleClickBoard = (event: Event) => {
-  const receivedEventTarget = event.target as HTMLDivElement;
-  const currentMovement: Movement = receivedEventTarget.id;
-  const playerTurn: Player = getPlayerTurn(gameState, players);
-  const isCurrentValidPlay: boolean = isValidPlay(gameState, currentMovement);
-  const isPlayer1Winner: boolean = isWinner(
-    gameState,
-    players[1],
-    winnerRoutes
-  );
-  const isPlayer2Winner: boolean = isWinner(
-    gameState,
-    players[2],
-    winnerRoutes
-  );
+// Creating our router manager wih client-side routing
+const routerManager: Navigo = new Navigo("/", {
+  hash: true,
+});
 
-  if (isCurrentValidPlay) {
-    if (!isPlayer1Winner && !isPlayer2Winner) {
-      gameState.push({
-        player: playerTurn,
-        movement: currentMovement,
-      });
-      // document.querySelector does not work if the string for the id start with a number
-      // For that reason, document.getElementById was used
-      // https://stackoverflow.com/questions/37270787/uncaught-syntaxerror-failed-to-execute-queryselector-on-document
-      const square: HTMLElement = document.getElementById(currentMovement)!;
-      square.textContent = gameState[gameState.length - 1].player;
-      turnMessage.textContent = `Current turn is for Player (${
-        playerTurn === players[1] ? players[2] : players[1]
-      })`;
-    }
-  }
-};
+//Handling the distinct routes with a Page
+routerManager.on(() => {
+  const homePage = new Home();
+  application.innerHTML = homePage.render();
+});
 
-const handleClickButton = (): void => {
-  gameState = [];
-  const squares = board.children;
+routerManager.on("/login", () => {
+  const loginPage = new Login();
+  application.innerHTML = loginPage.render();
+  loginPage.bindReactiveLogic(application);
+});
 
-  for (const square of squares) {
-    square.textContent = "";
-  }
-};
+routerManager.on("/register", () => {
+  const registerPage = new Register();
+  application.innerHTML = registerPage.render();
+  registerPage.bindReactiveLogic(application);
+});
 
-// An event handler is attached to a parent element (Event delegation)
-board.addEventListener("click", handleClickBoard);
+routerManager.on("/feed", () => {
+  const feedPage = new Feed();
+  application.innerHTML = feedPage.render();
+});
 
-// Handle the reset action
-button.addEventListener("click", handleClickButton);
+routerManager.on("/new", () => {
+  const addNewPage = new AddNew();
+  application.innerHTML = addNewPage.render();
+  addNewPage.bindReactiveLogic(application);
+});
+
+//Resolving the router is needed in order to apply the routing
+routerManager.resolve();
